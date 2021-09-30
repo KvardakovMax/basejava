@@ -22,9 +22,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void fillDeletedElement(int index) {
-        int numberOfEmptyCells = size - index - 1;
-        if (numberOfEmptyCells > 0) {
-            System.arraycopy(storage, index + 1, storage, index, numberOfEmptyCells);
+        int numMoved = size - index - 1;
+        if (numMoved > 0) {
+            System.arraycopy(storage, index + 1, storage, index, numMoved);
         }
     }
 }
