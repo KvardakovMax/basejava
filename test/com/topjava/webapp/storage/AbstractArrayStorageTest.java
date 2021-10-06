@@ -77,7 +77,7 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
-            Assert.fail("Fail");
+            Assert.fail("Overflow occurred ahead of time");
         }
         storage.save(new Resume());
     }
