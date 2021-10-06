@@ -11,17 +11,17 @@ import org.junit.Test;
 public abstract class AbstractArrayStorageTest {
     private Storage storage;
 
-    private final String UUID_1 = "uuid1";
-    private final Resume RESUME_1 = new Resume(UUID_1);
+    private static final String UUID_1 = "uuid1";
+    private static final Resume RESUME_1 = new Resume(UUID_1);
 
-    private final String UUID_2 = "uuid2";
-    private final Resume RESUME_2 = new Resume(UUID_2);
+    private static final String UUID_2 = "uuid2";
+    private static final Resume RESUME_2 = new Resume(UUID_2);
 
-    private final String UUID_3 = "uuid3";
-    private final Resume RESUME_3 = new Resume(UUID_3);
+    private static final String UUID_3 = "uuid3";
+    private static final Resume RESUME_3 = new Resume(UUID_3);
 
-    private final String UUID_4 = "uuid4";
-    private final Resume RESUME_4 = new Resume(UUID_4);
+    private static final String UUID_4 = "uuid4";
+    private static final Resume RESUME_4 = new Resume(UUID_4);
 
     protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
@@ -39,7 +39,6 @@ public abstract class AbstractArrayStorageTest {
     public void size() {
         assertSize(3);
     }
-
 
     @Test
     public void update() {
@@ -68,8 +67,9 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = ExistStorageException.class)
     public void saveExist() {
-        storage.save(RESUME_1);
+        storage.save(RESUME_2);
     }
+
     @Test(expected = StorageException.class)
     public void saveOverflow() {
         try {
@@ -77,8 +77,9 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
-            Assert.fail();
+            Assert.fail("Fail");
         }
+        storage.save(new Resume());
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -106,7 +107,7 @@ public abstract class AbstractArrayStorageTest {
         Assert.assertEquals(3, array.length);
         Assert.assertEquals(RESUME_1, array[0]);
         Assert.assertEquals(RESUME_2, array[1]);
-        Assert.assertEquals(RESUME_1, array[2]);
+        Assert.assertEquals(RESUME_3, array[2]);
     }
 
     private void assertSize(int size) {
