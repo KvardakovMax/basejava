@@ -58,16 +58,16 @@ public abstract class AbstractArrayStorageTest {
     }
 
     @Test
-    public void clear() {
-        storage.clear();
-        assertSize(0);
-    }
-
-    @Test
     public void save() {
         storage.save(RESUME_4);
         assertSize(4);
         assertGet(RESUME_4);
+    }
+
+    @Test
+    public void clear() {
+        storage.clear();
+        assertSize(0);
     }
 
     @Test(expected = ExistStorageException.class)
