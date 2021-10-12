@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
 
-    protected abstract int getSearchKey(String uuid);
+    protected abstract Integer getSearchKey(String uuid);
 
     protected abstract void insertElement(Resume r, int index);
 
@@ -22,44 +22,43 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return size;
     }
 
-    @Override
-    protected boolean isExist(Object searchKey) {
-        return (Integer) searchKey >= 0;
-    }
-
-    @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage[(Integer) searchKey] = r;
-    }
-
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-        if (size >= STORAGE_LIMIT) {
+    protected void doUpdate(Resume r, Object index) {
+        storage[(Integer) index] = r;
+    }
+
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size);
+    }
+
+    @Override
+    protected void doSave(Resume r, Object index) {
+        if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
-            insertElement(r, (Integer) searchKey);
+            insertElement(r, (Integer) index);
             size++;
         }
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        fillDeletedElement((Integer) searchKey);
+    public void doDelete(Object index) {
+        fillDeletedElement((Integer) index);
         storage[size - 1] = null;
         size--;
     }
 
-    @Override
-    protected Resume doGet(Object searchKey) {
-        return storage[(Integer) searchKey];
+    public Resume doGet(Object index) {
+        return storage[(Integer) index];
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+    @Override
+    protected boolean isExist(Object index) {
+        return (Integer) index >= 0;
     }
 }

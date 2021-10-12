@@ -14,13 +14,13 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected int getSearchKey(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i).getUuid().equals(uuid)) {
                 return i;
             }
         }
-        return -1;
+        return null;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
-        arrayList.add((Integer) searchKey, r);
+        arrayList.add(r);
     }
 
     @Override
@@ -55,6 +55,6 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return arrayList.toArray(new Resume[arrayList.size()]);
     }
 }
