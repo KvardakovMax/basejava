@@ -4,6 +4,7 @@ import com.topjava.webapp.exception.StorageException;
 import com.topjava.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
 
@@ -32,8 +33,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         storage[(Integer) index] = r;
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+    @Override
+    public List<Resume> doGetAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     @Override

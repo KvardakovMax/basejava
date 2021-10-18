@@ -2,8 +2,7 @@ package com.topjava.webapp.storage;
 
 import com.topjava.webapp.model.Resume;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MapStorage extends AbstractStorage{
     private Map<String, Resume> map = new HashMap<>();
@@ -44,8 +43,8 @@ public class MapStorage extends AbstractStorage{
     }
 
     @Override
-    public Resume[] getAll() {
-        return null;
+    public List<Resume> doGetAll() {
+        return new ArrayList<>(map.values());
     }
 
     @Override
