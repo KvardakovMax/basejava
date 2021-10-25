@@ -11,9 +11,7 @@ public class DescriptionTextSection extends AbstractSection {
 
     @Override
     public String toString() {
-        return "DescriptionText{" +
-                "TEXT_BLOCK='" + TEXT_BLOCK + '\'' +
-                '}';
+        return "{" + TEXT_BLOCK + "}";
     }
 
     @Override

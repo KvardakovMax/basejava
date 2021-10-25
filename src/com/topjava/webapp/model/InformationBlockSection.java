@@ -1,13 +1,18 @@
 package com.topjava.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class InformationBlock extends AbstractSection {
+public class InformationBlockSection extends AbstractSection {
 private final List<String> infoBlocks;
 
-    public InformationBlock(List<String> infoBlocks) {
+    public InformationBlockSection(List<String> infoBlocks) {
         this.infoBlocks = infoBlocks;
+    }
+
+    public InformationBlockSection(String... infoBlocks) {
+        this(Arrays.asList(infoBlocks));
     }
 
     public List<String> getInfoBlocks() {
@@ -16,16 +21,14 @@ private final List<String> infoBlocks;
 
     @Override
     public String toString() {
-        return "InformationBlocks{" +
-                "infoBlocks=" + infoBlocks +
-                '}';
+        return "{" + infoBlocks + "}";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        InformationBlock that = (InformationBlock) o;
+        InformationBlockSection that = (InformationBlockSection) o;
         return infoBlocks.equals(that.infoBlocks);
     }
 
