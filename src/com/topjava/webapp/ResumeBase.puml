@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+@startuml
+class Resume
+Resume : String fullName
+Resume : String uiid
+Resume : map<ContactType, String> contacts
+Resume : map<SectionType, AbstractSection> sections
+
+enum ContactType
+ContactType : Mail,
+ContactType : Skype,
+ContactType : etc
+
+enum SectionType
+SectionType : Qualification,
+SectionType : etc
+
+abstract class AbstractSection
+
+class DescriptionTextSection
+DescriptionTextSection : String textBlock
+
+class ListInformationBlocksSection
+ListInformationBlocksSection : list<String> information
+
+class Organization
+Organization : Link homePage
+Organization : String data
+Organization : String title
+Organization : String description
+
+class OrganizationSection
+OrganizationSection : list<Organization> organization
+
+Resume *--> ContactType
+Resume *--> SectionType
+Resume *--> AbstractSection
+AbstractSection <|-- ListInformationBlocksSection
+AbstractSection <|-- DescriptionTextSection
+AbstractSection <|-- OrganizationSection
+OrganizationSection <-- Organization
+@enduml
