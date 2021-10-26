@@ -2,6 +2,7 @@ package com.topjava.webapp.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Arrays;
 
 public class OrganizationSection extends AbstractSection {
     private final List<Organization> organization;
@@ -10,15 +11,17 @@ public class OrganizationSection extends AbstractSection {
         this.organization = organization;
     }
 
+    public OrganizationSection(Organization... organizations) {
+        this(Arrays.asList(organizations));
+    }
+
     public List<Organization> getOrganization() {
         return organization;
     }
 
     @Override
     public String toString() {
-        return "OrganizationSection{" +
-                "organization=" + organization +
-                '}';
+        return "" + organization + "";
     }
 
     @Override

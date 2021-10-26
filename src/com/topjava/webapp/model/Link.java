@@ -3,27 +3,27 @@ package com.topjava.webapp.model;
 import java.util.Objects;
 
 public class Link {
-    private final String NAME;
-    private final String URL;
+    private final String name;
+    private final String url;
 
-    public Link(String NAME, String URL) {
-        this.NAME = NAME;
-        this.URL = URL;
+    public Link(String name, String url) {
+        this.name = name;
+        this.url = url;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
     @Override
     public String toString() {
         return "Link{" +
-                "NAME='" + NAME + '\'' +
-                ", URL='" + URL + '\'' +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 
@@ -32,12 +32,12 @@ public class Link {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Link link = (Link) o;
-        return NAME.equals(link.NAME) &&
-                Objects.equals(URL, link.URL);
+        return name.equals(link.name) &&
+                Objects.equals(url, link.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NAME, URL);
+        return Objects.hash(name, url);
     }
 }
