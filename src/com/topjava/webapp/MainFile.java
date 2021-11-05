@@ -35,7 +35,7 @@ public class MainFile {
     public static void printAllFilesAndDirectory(File directory) {
         File[] files = directory.listFiles();
 
-        if (directory != null) {
+        if (files != null) {
             for (File file : files) {
                 if (file.isFile()) {
                     System.out.println("File: " + file.getName());

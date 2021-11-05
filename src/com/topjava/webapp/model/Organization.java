@@ -2,17 +2,16 @@ package com.topjava.webapp.model;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static com.topjava.webapp.util.DateUtil.of;
 import static com.topjava.webapp.util.DateUtil.NOW;
+import static com.topjava.webapp.util.DateUtil.of;
 
 public class Organization {
     private final Link homePage;
-    private List<Position> positions = new ArrayList<>();
+    private List<Position> positions;
 
     public Organization(String name, String url, Position... positions) {
         this(new Link(name, url), Arrays.asList(positions));

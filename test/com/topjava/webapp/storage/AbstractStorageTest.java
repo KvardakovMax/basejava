@@ -3,6 +3,7 @@ package com.topjava.webapp.storage;
 import com.topjava.webapp.exception.ExistStorageException;
 import com.topjava.webapp.exception.NotExistStorageException;
 import com.topjava.webapp.model.Resume;
+import com.topjava.webapp.model.ResumeTestData;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,11 +26,18 @@ public abstract class AbstractStorageTest {
     private static final Resume RESUME_3;
     private static final Resume RESUME_4;
 
+
     static {
-        RESUME_1 = new Resume(UUID_1, "Name1");
+/*        RESUME_1 = new Resume(UUID_1, "Name1");
         RESUME_2 = new Resume(UUID_2, "Name2");
         RESUME_3 = new Resume(UUID_3, "Name3");
-        RESUME_4 = new Resume(UUID_4, "Name4");
+        RESUME_4 = new Resume(UUID_4, "Name4");*/
+
+        ResumeTestData rtd = new ResumeTestData();
+        RESUME_1 = rtd.getCompletedResume(UUID_1, "Name1");
+        RESUME_2 = rtd.getCompletedResume(UUID_2, "Name2");
+        RESUME_3 = rtd.getCompletedResume(UUID_3, "Name3");
+        RESUME_4 = rtd.getCompletedResume(UUID_4, "Name4");
     }
 
     protected AbstractStorageTest(Storage storage) {
@@ -68,15 +76,15 @@ public abstract class AbstractStorageTest {
         assertGet(RESUME_4);
     }
 
+    @Test(expected = ExistStorageException.class)
+    public void saveExist() {
+        storage.save(RESUME_2);
+    }
+
     @Test
     public void clear() {
         storage.clear();
         assertSize(0);
-    }
-
-    @Test(expected = ExistStorageException.class)
-    public void saveExist() {
-        storage.save(RESUME_2);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -102,7 +110,7 @@ public abstract class AbstractStorageTest {
     public void getAllSorted() {
         List<Resume> list = storage.getAllSorted();
         assertEquals(3, list.size());
-        assertEquals(Arrays.asList(RESUME_1,RESUME_2, RESUME_3), list);
+        assertEquals(Arrays.asList(RESUME_1, RESUME_2, RESUME_3), list);
     }
 
     private void assertSize(int size) {

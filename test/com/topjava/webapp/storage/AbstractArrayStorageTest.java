@@ -5,8 +5,8 @@ import com.topjava.webapp.model.Resume;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
-        protected AbstractArrayStorageTest(Storage storage) {
+public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
+    protected AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }
 

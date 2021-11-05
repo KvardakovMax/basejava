@@ -1,4 +1,4 @@
-package com.topjava.webapp.storage;
+package com.topjava.webapp;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
