@@ -1,5 +1,6 @@
 package com.topjava.webapp.model;
 
+import java.time.Month;
 import java.util.EnumSet;
 
 public class ResumeTestData {
@@ -20,7 +21,7 @@ public class ResumeTestData {
         RESUME.addSections(SectionType.OBJECTIVE, new SimpleLineSection("OBJECTIVE"));
         RESUME.addSections(SectionType.PERSONAL, new SimpleLineSection("PERSONAL"));
         RESUME.addSections(SectionType.QUALIFICATIONS, new BulletedListSection("Java", "SQL"));
-        RESUME.addSections(SectionType.EXPERIENCE, new OrganizationSection(new Organization(new Link("work1", "https://yandex.ru"),"05.06.1999 - 01.07.2010", "Software engineer", "Hard-worker")));
+        RESUME.addSections(SectionType.EXPERIENCE, new OrganizationSection(new Organization("work1", "https://yandex.ru", new Organization.Position(2000, Month.APRIL, 2001, Month.FEBRUARY, "Software engineer", "Hard-worker"))));
     }
 
     public static void main(String[] args) {
