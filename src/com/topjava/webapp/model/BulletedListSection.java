@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class BulletedListSection extends AbstractSection {
-private final List<String> infoBlocks;
+    private static final long serialVersionUID = 1L;
+
+    private final List<String> infoBlocks;
 
     public BulletedListSection(List<String> infoBlocks) {
         this.infoBlocks = infoBlocks;

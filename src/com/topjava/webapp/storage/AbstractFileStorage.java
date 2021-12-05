@@ -3,8 +3,7 @@ package com.topjava.webapp.storage;
 import com.topjava.webapp.exception.StorageException;
 import com.topjava.webapp.model.Resume;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,8 +24,8 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         this.directory = directory;
     }
 
-    protected abstract void doWrite(Resume r, File file);
-    protected abstract Resume doRead(File file);
+    protected abstract void doWrite(Resume r, OutputStream file) throws IOException;
+    protected abstract Resume doRead(InputStream file) throws IOException;
 
     @Override
     protected File getSearchKey(String uuid) {
@@ -35,7 +34,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     protected void doUpdate(Resume r, File file) {
-        doWrite(r, file);
+        try {
+            doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
+        } catch (IOException e) {
+            throw new StorageException("File write error", r.getUuid(), e);
+        }
     }
 
     @Override
@@ -47,15 +50,19 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void doSave(Resume r, File file) {
         try {
             file.createNewFile();
-            doWrite(r, file);
         } catch (IOException e) {
-            throw new StorageException("IO Error", file.getName(), e);
+            throw new StorageException("Couldn't create file " + file.getAbsolutePath(), file.getName(), e);
         }
+        doUpdate(r, file);
     }
 
     @Override
     protected Resume doGet(File file) {
-        return doRead(file);
+        try {
+            return doRead(new BufferedInputStream(new FileInputStream(file)));
+        } catch (IOException e) {
+            throw new StorageException("File read error", file.getName(), e);
+        }
     }
 
     @Override

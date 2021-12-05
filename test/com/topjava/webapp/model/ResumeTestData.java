@@ -26,7 +26,7 @@ public class ResumeTestData {
     }*/
 
 
-    public Resume getCompletedResume(String uuid, String fullName) {
+    public static Resume getCompletedResume(String uuid, String fullName) {
         Resume resume = new Resume(uuid, fullName);
         resume.addContacts(ContactType.PHONE, "7(921) 855-0482");
         resume.addContacts(ContactType.SKYPE, "grigory.kislin");
@@ -47,8 +47,8 @@ public class ResumeTestData {
         return resume;
     }
 
-/*    public static void main(String[] args) {
-        System.out.println(RESUME.getContacts(ContactType.SKYPE));
+    public static void main(String[] args) {
+       /* System.out.println(RESUME.getContacts(ContactType.SKYPE));
 
         for (ContactType type : EnumSet.allOf(ContactType.class)) {
             System.out.println(RESUME.getContacts(type));
@@ -56,6 +56,6 @@ public class ResumeTestData {
 
         for (SectionType type : EnumSet.allOf(SectionType.class)) {
             System.out.println(RESUME.getSections(type));
-        }
-    }*/
+        }*/
+    }
 }
